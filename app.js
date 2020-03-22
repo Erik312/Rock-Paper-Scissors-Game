@@ -1,89 +1,116 @@
-var playerScore = 0;
-var computerScore = 0;
-var round = 1;
-
-
+let playerScore = 0;
+let computerScore = 0;
+let round = 0;
+let winnerOutput = document.getElementById("winner");
+let currentPlayerScore = document.getElementById("player-score");
+let currentComputerScore = document.getElementById("computer-score");
 
 
 
 function computerPlay(){
-	let options = ['rock', 'paper', 'scissors'];
+	let options = ['ROCK', 'PAPER', 'SCISSORS'];
 	let randomOption = options[Math.floor(Math.random() * options.length)];
 	return randomOption;
 
 };
 
 
-function playerSelection(){
-	let playerChoice = prompt("rock paper or scissors");
-	let item1 = playerChoice.toLowerCase();
-	return item1;
+function rock(){
+	round++;
+	let playerMove = 'ROCK'
+	const computerMove = computerPlay();
+	if(playerMove === 'ROCK' && computerMove === 'ROCK'){
+		alert("Draw");
+
+	}else if(playerMove === 'ROCK' && computerMove === 'PAPER'){
+		computerScore++;
+		alert("computer wins");
+
+	}else if(playerMove === 'ROCK' && computerMove === 'SCISSORS'){
+		playerScore++;
+		alert("Player wins");
+	}
+
+	outputScores();
+	checkScore();
+};
+
+
+function paper(){
+	round++;
+	let playerMove = 'PAPER'
+	const computerMove = computerPlay();
+	if(playerMove === 'PAPER' && computerMove === 'ROCK'){
+		playerScore++;
+		alert("player wins");
+
+	}else if(playerMove === 'PAPER' && computerMove === 'PAPER'){
+		alert("Draw");
+
+	}else if(playerMove === 'PAPER' && computerMove === 'SCISSORS'){
+		computerScore++;
+		alert("computer wins");
+	}
+	outputScores();
+	checkScore();
+};
+
+
+
+function scissors(){
+	round++;
+	let playerMove = 'SCISSORS'
+	const computerMove = computerPlay();
+	if(playerMove === 'SCISSORS' && computerMove === 'ROCK'){
+		computerScore++;
+		alert("computer wins");
+
+	}else if(playerMove === 'SCISSORS' && computerMove === 'PAPER'){
+		playerScore++;
+		alert("Player wins");
+
+	}else if(playerMove === 'SCISSORS' && computerMove === 'SCISSORS'){
+		alert("Draw");
+	}
+	outputScores();
+	checkScore();
+};
+
+function outputScores(){
+	
+	currentPlayerScore.textContent = playerScore;
+	currentComputerScore.textContent = computerScore;
+
+
 };
 
 function checkScore(){
-	if(round === 5){
-		if(playerScore < computerScore){
-			alert("Computer Wins!");
-
+	if (round === 5){
+		if(playerScore === computerScore){
+			winnerOutput.textContent = "Its a Draw";
+		}else if(playerScore < computerScore){
+			winnerOutput.textContent = "Computer Wins";
 		}else if(playerScore > computerScore){
-			alert("Player Wins!");
-		}else{
-			alert("Tie Game!");
+			winnerOutput.textContent = "Player wins";
 		}
 	}
 
+
+};
+
+function resetGame(){
+	 playerScore = 0;
+	 computerScore = 0;
+	 round = 0;
+	 winnerOutput.textContent = " ";
+	 currentComputerScore.textContent = 0;
+	 currentPlayerScore.textContent = 0;
+
+
 };
 
 
 
-function oneRound(){
-	const playerMove = playerSelection();
-	const computerMove = computerPlay();
-
-	
-	if(playerMove === 'rock' && computerMove === 'paper'){
-		
-		computerScore++;
-		return "Computer wins that round";
-	}else if(playerMove === 'rock' && computerMove === 'scissors'){
-		
-		playerScore++;
-		return "player Wins that round";
-	}else if(playerMove === 'rock' && computerMove === 'rock'){
-		
-		
-		return "Draw";
-	}else if(playerMove === 'paper' && computerMove === 'rock'){
-		
-		playerScore++;
-		return "player wins that round";
-	}else if(playerMove === 'paper' && computerMove === 'scissors'){
-		computerScore++;
-		return "computer wins that round";
-	} else if(playerMove === 'paper' && computerMove === 'paper'){
-
-		return "Draw";
-	} else if(playerMove === 'scissors' && computerMove === 'paper'){
-		playerScore++;
-		return "player wins that round"
-	} else if (playerMove === 'scissors' && computerMove === 'rock'){
-		computerScore++;
-		return "computer wins that round"
-	} else if (playerMove === 'scissors' && computerMove === 'scissors'){
-		return "Draw!"
-	}
-};
 
 
-function game(){
-	for(round; round < 6; round++){
-		
-		console.log(oneRound());
-		console.log(playerScore, computerScore);
-		checkScore();
-	}
 
-}
-
-
-game();

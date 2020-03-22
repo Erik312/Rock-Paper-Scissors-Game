@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rock Paper Scissors</title>
+	<title></title>
 	<script type="text/javascript" src="app.js" defer></script>
 </head>
 <body>
-	<h1>Quarantine Games</h1>
-	<h2>Rock Paper Scissors</h2>
-	
+	<div class="results">
+		<h2> Best of 5 WINNER:<span id="winner"> </span></h2>
+			
+		
+		<h2> Player-Result: <span id="player-score">0</span></h2>
+
+		<h2>Computer-Result: <span id="computer-score">0</span></h2>
+			
+		
+		
+
+	</div>
+	<div>
+		<button id="b1" onclick="rock();">rock</button>
+		<button id="b2" onclick="paper();">paper</button>
+		<button id="b3" onclick="scissors();">scissors</button>
+	</div>
+
+	<div>
+		<button id="restart-game" onclick="resetGame();">Reset</button>
+	</div>
 </body>
 </html>
