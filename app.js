@@ -1,3 +1,13 @@
+/*
+Erik Ramos
+03/22/20
+Quarantine Gamez
+rock paper scissors
+*/
+
+
+
+
 let playerScore = 0;
 let computerScore = 0;
 let round = 0;
